@@ -1,30 +1,18 @@
-import { Column, PrimaryGeneratedColumn } from "typeorm";
-
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+@Entity()
 export class Admin {
     @PrimaryGeneratedColumn()
     id: number;
-    
-    @Column({ unique: true })
-    fullname: string;
 
     @Column()
+    username: string;
+
+    @Column()
+    password: string;
+
+    @Column({ nullable: true })
     email: string;
 
-    @Column()
-    phone_number: string;
-
-    @Column()
-    tg_link: string;
-
-    @Column()
-    hashed_password: string;
-
-    @Column()
-    hashed_refresh_token: string;
-
-    @Column({default: false})
-    is_active: boolean;
-
-    @Column({default: false})
-    is_creator: string;
+    @Column({ default: true })
+    isActive: boolean;
 }
