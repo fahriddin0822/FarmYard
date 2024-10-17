@@ -15,7 +15,7 @@ export class WorkerRoleService {
   }
 
   findAll() {
-    return this.workerRoleRepo.find();
+    return this.workerRoleRepo.find({ relations: ['workers'] });
   }
 
   findOne(id: number) {

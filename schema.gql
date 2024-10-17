@@ -1,0 +1,57 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateWorkerDto {
+  experience: Float!
+  name: String!
+  phone_number: String!
+  salary: Float!
+}
+
+input CreateWorkerRoleDto {
+  description: String!
+  name: String!
+}
+
+type Mutation {
+  createWorker(createWorker: CreateWorkerDto!): Workers!
+  createWorkerRole(createWorkerRole: CreateWorkerRoleDto!): WorkerRole!
+  removeWorker(id: ID!): ID!
+  removeWorkerRole(id: ID!): ID!
+  updateWorker(id: ID!, updateWorkerDto: UpdateWorkerDto!): Workers!
+  updateWorkerRole(id: ID!, updateWorkerRole: UpdateWorkerRoleDto!): WorkerRole!
+}
+
+type Query {
+  findAllWorkerRole: [WorkerRole!]!
+  findAllWorkers: [Workers!]!
+  findOneWorker(id: ID!): Workers!
+  findOneWorkerRole(id: ID!): WorkerRole!
+}
+
+input UpdateWorkerDto {
+  experience: Float
+  name: String
+  phone_number: String
+  salary: Float
+}
+
+input UpdateWorkerRoleDto {
+  description: String
+  name: String
+}
+
+type WorkerRole {
+  description: String!
+  id: Float!
+  name: String!
+  workers: [Workers!]
+}
+
+type Workers {
+  id: Float!
+  name: String!
+  phone_number: String!
+  workerRoles: [WorkerRole!]
+}

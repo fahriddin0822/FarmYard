@@ -8,9 +8,18 @@ import { WorkersWorkerRoleModule } from './workers_worker_role/workers_worker_ro
 import { Workers } from './workers/entities/worker.entity';
 import { WorkerRole } from './worker_role/entities/worker_role.entity';
 import { WorkersWorkerRole } from './workers_worker_role/entities/workers_worker_role.entity';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { Schema } from '@nestjs/mongoose';
 
 @Module({
   imports: [
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver:ApolloDriver,
+      autoSchemaFile:"schema.gql",
+      sortSchema:true,
+      playground:true
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,

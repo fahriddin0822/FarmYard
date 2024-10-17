@@ -1,17 +1,24 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Workers } from "../../workers/entities/worker.entity"; // Ensure the correct import path
+import { Field, ObjectType } from "@nestjs/graphql";
 
+@ObjectType()
 @Entity()
 export class WorkerRole {
     @PrimaryGeneratedColumn()
-    id: number;
+  @Field(() => Number)  // Explicit type for GraphQL
+  id: number;
 
-    @Column()
-    name: string;
+  @Column()
+  @Field(() => String)  // Explicit type for GraphQL
+  name: string;
 
-    @Column()
-    description: string;
+  @Column()
+  @Field(() => String)  // Explicit type for GraphQL
+  description: string;
 
-    @ManyToMany(() => Workers, worker => worker.workerRoles)
-    workers: Workers[];
+  @ManyToMany(() => Workers, worker => worker.workerRoles)
+  @JoinTable()
+  @Field(() => [Workers], { nullable: true })  // Explicit type for the workers array
+  workers: Workers[];
 }

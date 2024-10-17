@@ -1,22 +1,22 @@
-import { IsNotEmpty, IsString, IsArray, ArrayNotEmpty } from 'class-validator';
+import { InputType, Field } from '@nestjs/graphql';
+import { IsString, IsNumber, IsOptional } from 'class-validator';
 
+@InputType()  // Ensure the class is decorated with @InputType()
 export class CreateWorkerDto {
-  @IsNotEmpty()
+  
   @IsString()
+  @Field(() => String)  // Ensure each field is decorated with @Field()
   name: string;
 
-  @IsNotEmpty()
   @IsString()
+  @Field(() => String)
   phone_number: string;
 
-  @IsNotEmpty()
+  @IsNumber()
+  @Field(() => Number)
   experience: number;
 
-  @IsNotEmpty()
+  @IsNumber()
+  @Field(() => Number)
   salary: number;
-
-  @IsNotEmpty()
-  @IsArray()
-  @ArrayNotEmpty() // Ensure there's at least one role
-  roleIds: number[]; // The IDs of the roles from WorkerRole table
 }

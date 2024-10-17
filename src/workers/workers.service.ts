@@ -22,7 +22,7 @@ export class WorkersService {
     if (roles.length !== roleIds.length) {
       throw new BadRequestException('One or more roles are invalid');
     }
-    const worker = this.workerRepo.create({
+    return this.workerRepo.save({
       name,
       phone_number,
       experience,
@@ -30,11 +30,11 @@ export class WorkersService {
       workerRoles: roles, // Set the roles here
     });
 
-    return this.workerRepo.save(worker);
+    // return this.workerRepo.save(worker);
   }
 
-  findAll() {
-    return this.workerRepo.find({relations:["workerRoles"]});
+  async findAll(): Promise<Workers[]> {
+    return this.workerRepo.find({ relations: ['workerRoles'] });
   }
 
   findOne(id: number) {

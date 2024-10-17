@@ -1,4 +1,11 @@
+import { Field, InputType } from "@nestjs/graphql";
+
+@InputType()
 export class CreateWorkerRoleDto {
-    name:string;
-    description:string;
+
+    @Field()
+    name: string;
+
+    @Field()
+    description: string;
 }
