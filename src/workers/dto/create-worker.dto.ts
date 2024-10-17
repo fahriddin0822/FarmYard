@@ -1,11 +1,11 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { IsString, IsNumber, IsOptional } from 'class-validator';
+import { IsString, IsNumber, IsOptional, IsArray, ArrayNotEmpty } from 'class-validator';
 
-@InputType()  // Ensure the class is decorated with @InputType()
+@InputType()
 export class CreateWorkerDto {
   
   @IsString()
-  @Field(() => String)  // Ensure each field is decorated with @Field()
+  @Field(() => String)
   name: string;
 
   @IsString()
@@ -19,4 +19,10 @@ export class CreateWorkerDto {
   @IsNumber()
   @Field(() => Number)
   salary: number;
+
+  // Add roleIds as an array of numbers
+  @IsArray()
+  @ArrayNotEmpty()
+  @Field(() => [Number])  // Ensure it's typed as an array of numbers in GraphQL
+  roleIds: number[];  // This is for the worker's role IDs
 }

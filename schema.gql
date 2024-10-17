@@ -6,6 +6,7 @@ input CreateWorkerDto {
   experience: Float!
   name: String!
   phone_number: String!
+  roleIds: [Float!]!
   salary: Float!
 }
 
