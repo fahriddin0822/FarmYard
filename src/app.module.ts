@@ -11,6 +11,8 @@ import { WorkersWorkerRole } from './workers_worker_role/entities/workers_worker
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Schema } from '@nestjs/mongoose';
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 @Module({
   imports: [
@@ -24,9 +26,9 @@ import { Schema } from '@nestjs/mongoose';
       type: 'postgres',
       host: process.env.DB_HOST,
       port: parseInt(process.env.DB_PORT),
-      username: process.env.DB_USER || 'postgres',
-      password: process.env.DB_PASSWORD || '5432',
-      database: process.env.DB_NAME || 'farmyard',
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD ,
+      database: process.env.DB_NAME,
       entities: [
         Admin,
         Workers,

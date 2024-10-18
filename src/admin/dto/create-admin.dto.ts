@@ -1,5 +1,14 @@
+import { Field, InputType } from "@nestjs/graphql";
+
+@InputType()  // Input type for GraphQL mutations
 export class CreateAdminDto {
-    username: string;
-    password: string;
-    email: string;
+
+  @Field()  // GraphQL field decorator
+  username: string;
+
+  @Field()  // GraphQL field decorator
+  password: string;
+
+  @Field()  // GraphQL field decorator
+  email: string;
 }

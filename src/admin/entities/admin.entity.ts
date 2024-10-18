@@ -1,18 +1,30 @@
+import { Field, ObjectType, ID } from "@nestjs/graphql";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-@Entity()
+
+@ObjectType()  // Changed to ObjectType for GraphQL output
+@Entity()  // TypeORM Entity decorator
 export class Admin {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  @Field(() => ID)  // Explicit ID field for GraphQL
+  id: number;
 
-    @Column()
-    username: string;
+  @Field()  // GraphQL field decorator
+  @Column()
+  username: string;
 
-    @Column()
-    password: string;
+  @Field()  // GraphQL field decorator
+  @Column()
+  password: string;
 
-    @Column({ nullable: true })
-    email: string;
+  @Field({ nullable: true })  // Nullable field for GraphQL
+  @Column({ nullable: true })
+  email: string;
 
-    @Column({ default: true })
-    isActive: boolean;
+  @Field()  // GraphQL field decorator
+  @Column({ default: true })
+  isActive: boolean;
+
+  @Field()  // GraphQL field decorator
+  @Column({ default: false })
+  isCreator: boolean;
 }

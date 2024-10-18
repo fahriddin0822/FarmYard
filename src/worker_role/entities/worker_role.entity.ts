@@ -1,12 +1,12 @@
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Workers } from "../../workers/entities/worker.entity"; // Ensure the correct import path
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, ID, ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
 @Entity()
 export class WorkerRole {
     @PrimaryGeneratedColumn()
-  @Field(() => Number)  // Explicit type for GraphQL
+  @Field(() => ID)  // Explicit type for GraphQL
   id: number;
 
   @Column()

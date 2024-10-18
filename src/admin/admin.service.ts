@@ -16,6 +16,11 @@ export class AdminService {
     return this.adminRepo.save(newAdmin);
   }
 
+  async createAdmin(createAdminDto: CreateAdminDto) {
+    const newAdmin = await this.adminRepo.create(createAdminDto);
+    return this.adminRepo.save(newAdmin);
+  }
+
   findAll() {
     return this.adminRepo.find();
   }
@@ -35,5 +40,5 @@ export class AdminService {
   remove(id: number) {
     return this.adminRepo.delete(id);
   }
-  
+
 }

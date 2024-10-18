@@ -2,6 +2,21 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Admin {
+  email: String
+  id: ID!
+  isActive: Boolean!
+  isCreator: Boolean!
+  password: String!
+  username: String!
+}
+
+input CreateAdminDto {
+  email: String!
+  password: String!
+  username: String!
+}
+
 input CreateWorkerDto {
   experience: Float!
   name: String!
@@ -16,19 +31,30 @@ input CreateWorkerRoleDto {
 }
 
 type Mutation {
+  create(createAdmin: CreateAdminDto!): Admin!
   createWorker(createWorker: CreateWorkerDto!): Workers!
   createWorkerRole(createWorkerRole: CreateWorkerRoleDto!): WorkerRole!
+  remove(id: ID!): ID!
   removeWorker(id: ID!): ID!
   removeWorkerRole(id: ID!): ID!
+  update(id: ID!, updateAdmin: UpdateAdminDto!): Admin!
   updateWorker(id: ID!, updateWorkerDto: UpdateWorkerDto!): Workers!
   updateWorkerRole(id: ID!, updateWorkerRole: UpdateWorkerRoleDto!): WorkerRole!
 }
 
 type Query {
+  findAll: [Admin!]!
   findAllWorkerRole: [WorkerRole!]!
   findAllWorkers: [Workers!]!
+  findOne(id: ID!): Admin!
   findOneWorker(id: ID!): Workers!
   findOneWorkerRole(id: ID!): WorkerRole!
+}
+
+input UpdateAdminDto {
+  email: String
+  password: String
+  username: String
 }
 
 input UpdateWorkerDto {
@@ -45,7 +71,7 @@ input UpdateWorkerRoleDto {
 
 type WorkerRole {
   description: String!
-  id: Float!
+  id: ID!
   name: String!
   workers: [Workers!]
 }
