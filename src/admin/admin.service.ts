@@ -16,8 +16,8 @@ export class AdminService {
     return this.adminRepo.save(newAdmin);
   }
 
-  async createAdmin(createAdminDto: CreateAdminDto) {
-    const newAdmin = await this.adminRepo.create(createAdminDto);
+  createAdmin(createAdminDto: CreateAdminDto) {
+    const newAdmin = this.adminRepo.create(createAdminDto);
     return this.adminRepo.save(newAdmin);
   }
 

@@ -11,6 +11,19 @@ import { WorkersWorkerRole } from './workers_worker_role/entities/workers_worker
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Schema } from '@nestjs/mongoose';
+import { AnimalsModule } from './animals/animals.module';
+import { VaccinationHystoryModule } from './vaccination_hystory/vaccination_hystory.module';
+import { VaccinationModule } from './vaccination/vaccination.module';
+import { ProductionModule } from './production/production.module';
+import { ProductionProductionTypeModule } from './production_production_type/production_production_type.module';
+import { ProductTypeModule } from './product_type/product_type.module';
+import { ProductProductionTypeModule } from './product_production_type/product_production_type.module';
+import { FeedingSchedulesModule } from './feeding_schedules/feeding_schedules.module';
+import { FoodsModule } from './foods/foods.module';
+import { IllnessHystoryModule } from './illness_hystory/illness_hystory.module';
+import { IllnessTypeModule } from './illness_type/illness_type.module';
+import { SpeciesModule } from './species/species.module';
+import { BreedsModule } from './breeds/breeds.module';
 import * as dotenv from 'dotenv'
 dotenv.config()
 
@@ -42,6 +55,19 @@ dotenv.config()
     WorkersModule,
     WorkerRoleModule,
     WorkersWorkerRoleModule,
+    AnimalsModule,
+    VaccinationHystoryModule,
+    VaccinationModule,
+    ProductionModule,
+    ProductionProductionTypeModule,
+    ProductTypeModule,
+    ProductProductionTypeModule,
+    FeedingSchedulesModule,
+    FoodsModule,
+    IllnessHystoryModule,
+    IllnessTypeModule,
+    SpeciesModule,
+    BreedsModule,
   ],
   controllers: [],
   providers: [],
