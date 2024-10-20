@@ -1,18 +1,20 @@
 import { Field, InputType } from "@nestjs/graphql";
 @InputType()
 export class CreateProductionDto {
-    @Field()
+    @Field({ nullable: true })
     animal_id: string;
+
     @Field()
     production_date: string;
+
     @Field()
     cost_sold: number;
-    @Field()
+
+    @Field({ defaultValue: 0 })
     total_profit: number;
-    @Field()
-    product_type: number;
 
-    @Field(() => [Number], { nullable: true })
+    // This will hold the IDs of the product types to associate with the production
+    @Field(() => [Number], { nullable: false })
     productTypeIds: number[];
-
 }
+

@@ -6,7 +6,7 @@ import { ProductType } from "../../product_type/entities/product_type.entity";
 @ObjectType()
 @Entity()
 export class Production {
-    @PrimaryGeneratedColumn()
+@PrimaryGeneratedColumn()
   @Field(() => Number)
   id: number;
 
@@ -17,13 +17,13 @@ export class Production {
   @Column()
   @Field(() => String)
   production_date: string;
-    
+
   @Column()
-  @Field(() => String)
+  @Field(() => Number)
   cost_sold: number;
 
   @Column()
-  @Field(() => String)
+  @Field(() => Number)
   total_profit: number;
 
   @ManyToMany(() => ProductType, productType => productType.products, { cascade: true })

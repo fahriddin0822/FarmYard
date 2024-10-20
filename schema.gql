@@ -50,11 +50,11 @@ type ProductType {
 
 type Production {
   animal_id: String!
-  cost_sold: String!
+  cost_sold: Float!
   id: Float!
   productTypes: [ProductType!]
   production_date: String!
-  total_profit: String!
+  total_profit: Float!
 }
 
 type Query {

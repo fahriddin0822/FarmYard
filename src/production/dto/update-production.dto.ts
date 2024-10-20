@@ -4,7 +4,7 @@ import { Field, InputType } from '@nestjs/graphql';
 import { IsOptional, IsString } from 'class-validator';
 
 @InputType()
-export class UpdateProductionDto extends PartialType(CreateProductionDto) {
+export class UpdateProductionDto{
     @IsOptional()
     @IsString()
     @Field(() => String, { nullable: true })
@@ -23,11 +23,10 @@ export class UpdateProductionDto extends PartialType(CreateProductionDto) {
     @IsOptional()
     @IsString()
     @Field(() => Number, { nullable: true })
-    product_type: number;
-
+    total_profit: number;
 
     @IsOptional()
     @IsString()
     @Field(() => Number, { nullable: true })
-    total_profit: number;
+    productTypeIds: number[];
 }
