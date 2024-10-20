@@ -8,11 +8,11 @@ export class Admin {
   @Field(() => ID)  // Explicit ID field for GraphQL
   id: number;
 
-  @Field()  // GraphQL field decorator
+  @Field()
   @Column()
-  username: string;
+  username: string; 
 
-  @Field()  // GraphQL field decorator
+  @Field()
   @Column()
   password: string;
 
@@ -20,11 +20,11 @@ export class Admin {
   @Column({ nullable: true })
   email: string;
 
-  @Field()  // GraphQL field decorator
+  @Field()
   @Column({ default: true })
   isActive: boolean;
 
-  @Field()  // GraphQL field decorator
+  @Field()
   @Column({ default: false })
   isCreator: boolean;
 }

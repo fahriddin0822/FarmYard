@@ -8,7 +8,6 @@ dotenv.config();
 
 async function start() {
   try {
-    console.log(process.env.DB_NAME);
     const PORT = process.env.PORT
     const app = await NestFactory.create(AppModule);
     app.use(cookieParser());

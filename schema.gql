@@ -42,6 +42,21 @@ type Mutation {
   updateWorkerRole(id: ID!, updateWorkerRole: UpdateWorkerRoleDto!): WorkerRole!
 }
 
+type ProductType {
+  id: ID!
+  name: String!
+  products: [Production!]
+}
+
+type Production {
+  animal_id: String!
+  cost_sold: String!
+  id: Float!
+  productTypes: [ProductType!]
+  production_date: String!
+  total_profit: String!
+}
+
 type Query {
   findAll: [Admin!]!
   findAllWorkerRole: [WorkerRole!]!

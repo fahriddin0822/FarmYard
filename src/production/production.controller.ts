@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ProductionService } from './production.service';
 import { CreateProductionDto } from './dto/create-production.dto';
 import { UpdateProductionDto } from './dto/update-production.dto';
+import { relative } from 'path';
 
 @Controller('production')
 export class ProductionController {
@@ -13,8 +14,9 @@ export class ProductionController {
   }
 
   @Get()
-  findAll() {
-    return this.productionService.findAll();
+  async findAll() {
+    const productions = await this.productionService.findAll();
+    return productions;  // Automatically includes related productTypes
   }
 
   @Get(':id')

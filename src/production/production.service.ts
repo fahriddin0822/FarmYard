@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { CreateProductionDto } from './dto/create-production.dto';
 import { UpdateProductionDto } from './dto/update-production.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Production } from './entities/production.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ProductionService {
+  constructor(
+    @InjectRepository(Production) private readonly productionRepo: Repository<Production>,
+  ) { }
+
   create(createProductionDto: CreateProductionDto) {
-    return 'This action adds a new production';
+    return this.productionRepo.save(createProductionDto);
   }
 
   findAll() {
-    return `This action returns all production`;
+    return this.productionRepo.find({ relations: ['productTypes'] });
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} production`;
+    return this.productionRepo.findOne({ where: { id }, relations: ['productTypes'] });
   }
 
   update(id: number, updateProductionDto: UpdateProductionDto) {
-    return `This action updates a #${id} production`;
+    return this.productionRepo.update(id, updateProductionDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} production`;
+    return this.productionRepo.delete(id);
   }
 }
