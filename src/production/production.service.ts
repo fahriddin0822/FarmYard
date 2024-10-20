@@ -3,7 +3,7 @@ import { CreateProductionDto } from './dto/create-production.dto';
 import { UpdateProductionDto } from './dto/update-production.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Production } from './entities/production.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { ProductType } from '../product_type/entities/product_type.entity';
 
 @Injectable()
@@ -14,24 +14,37 @@ export class ProductionService {
   ) { }
 
   async create(createProductionDto: CreateProductionDto) {
-    const { production_date, cost_sold, total_profit, productTypeIds } = createProductionDto;
-
+    const {
+      animal_id,
+      production_date,
+      cost_sold,
+      total_profit = 0, // Ensure a default value if not provided
+      productTypeIds,
+    } = createProductionDto;
+  
     // Fetch product types based on the IDs passed
-    const productTypes = await this.productTypeRepo.findByIds(productTypeIds);
-
-    // If some product types are invalid, you can throw an exception
-    if (productTypes.length !== productTypeIds.length) {
-        throw new BadRequestException('One or more product types are invalid');
-    }
-
-    // Save the production and associate it with the fetched product types
-    return this.productionRepo.save({
-        production_date,
-        cost_sold,
-        total_profit,
-        productTypes,  // Associate the product types here
+    const productTypes = await this.productTypeRepo.findBy({
+      id: In(productTypeIds),
     });
-}
+  
+    // If some product types are invalid, throw an exception
+    if (productTypes.length !== productTypeIds.length) {
+      throw new BadRequestException('One or more product types are invalid');
+    }
+  
+    // Create a new production instance
+    const production = this.productionRepo.create({
+      animal_id,
+      production_date,
+      cost_sold,
+      total_profit,
+      productTypes,
+    });
+  
+    // Save the production
+    return this.productionRepo.save(production);
+  }
+  
 
 
   findAll() {

@@ -1,20 +1,28 @@
-import { Field, InputType } from "@nestjs/graphql";
+import { Field, InputType } from '@nestjs/graphql';
+import { IsString, IsOptional, IsNumber, IsArray } from 'class-validator';
+
 @InputType()
 export class CreateProductionDto {
-    @Field({ nullable: true })
-    animal_id: string;
+  @Field({ nullable: true })
+  @IsOptional()
+  @IsString()
+  animal_id: string;
 
-    @Field()
-    production_date: string;
+  @Field()
+  @IsString()
+  production_date: string;
 
-    @Field()
-    cost_sold: number;
+  @Field()
+  @IsNumber()
+  cost_sold: number;
 
-    @Field({ defaultValue: 0 })
-    total_profit: number;
+  @Field({ defaultValue: 0 })
+  @IsOptional()
+  @IsNumber()
+  total_profit: number;
 
-    // This will hold the IDs of the product types to associate with the production
-    @Field(() => [Number], { nullable: false })
-    productTypeIds: number[];
+  @Field(() => [Number], { nullable: false })
+  @IsArray()
+  @IsNumber({}, { each: true })
+  productTypeIds: number[];
 }
-

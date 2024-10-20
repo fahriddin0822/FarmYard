@@ -14,7 +14,6 @@ export class ProductType {
     @Field(() => String)  // Explicit type for GraphQL
     name: string;
 
-    // @JoinTable()
     @Field(() => [Production], { nullable: true })  // Explicit type for the workers array
     @ManyToMany(() => Production, product => product.productTypes)
     products: Production[];
